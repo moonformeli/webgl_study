@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 01.01 - Basic skeleton</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="WebGL-output"></div>
+<!--<div id="Stats-output"></div>-->
+<script src="../src/three.js"></script>
+<script src="../src/stat.js"></script>
+<script src="../src/dat.gui.js"></script>
+<script src="../src/CSS3DRenderer.js"></script>
+<script>
+    var camera, scene, renderer;
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer();
+
+    camera.position.set(10, 20, 100);
+    camera.lookAt(scene.position);
+
+    renderer.setClearColor(0xEEEEEE);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    var axes = new THREE.AxisHelper(20);
+    scene.add(axes);
+
+    var geometry = new THREE.BoxGeometry(20, 20, 20);
+    var material = new THREE.MeshBasicMaterial({color: 0xdd1122});
+    var mesh = new THREE.Mesh(geometry, material);
+
+    scene.add(mesh);
+
+    document.getElementById("WebGL-output").appendChild(renderer.domElement);
+    renderer.render(scene, camera);
+</script>
+</body>
+</html>
